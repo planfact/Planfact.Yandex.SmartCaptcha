@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Reliable.HttpClient;
 
 namespace Yandex.SmartCaptcha;
 
@@ -25,8 +26,14 @@ public static class ServiceCollectionExtensions
             throw new ArgumentException("Имя секции не может быть пустым.", nameof(sectionName));
 
         services.Configure<SmartCaptchaSettings>(configuration.GetSection(sectionName));
-        services.TryAddScoped<HttpClient>();
-        services.TryAddScoped<ISmartCaptchaValidator, SmartCaptchaValidator>();
+        
+        // Добавляем HttpClient с resilience patterns для надежности
+        services.AddHttpClient<ISmartCaptchaValidator, SmartCaptchaValidator>(client =>
+        {
+            client.BaseAddress = new Uri("https://smartcaptcha.yandexcloud.net/");
+            client.Timeout = TimeSpan.FromSeconds(30); // Базовый timeout
+        })
+        .AddResilience(); // Автоматические retry + circuit breaker
 
         return services;
     }
@@ -42,8 +49,14 @@ public static class ServiceCollectionExtensions
         SmartCaptchaSettings settings)
     {
         services.TryAddSingleton(settings);
-        services.TryAddScoped<HttpClient>();
-        services.TryAddScoped<ISmartCaptchaValidator, SmartCaptchaValidator>();
+        
+        // Добавляем HttpClient с resilience patterns для надежности
+        services.AddHttpClient<ISmartCaptchaValidator, SmartCaptchaValidator>(client =>
+        {
+            client.BaseAddress = new Uri("https://smartcaptcha.yandexcloud.net/");
+            client.Timeout = TimeSpan.FromSeconds(settings.TimeoutSeconds);
+        })
+        .AddResilience(); // Автоматические retry + circuit breaker
 
         return services;
     }
@@ -70,7 +83,8 @@ public static class ServiceCollectionExtensions
             {
                 client.BaseAddress = new Uri("https://smartcaptcha.yandexcloud.net");
                 client.Timeout = TimeSpan.FromSeconds(30);
-            });
+            })
+            .AddResilience(); // Автоматические retry + circuit breaker
 
         return services;
     }

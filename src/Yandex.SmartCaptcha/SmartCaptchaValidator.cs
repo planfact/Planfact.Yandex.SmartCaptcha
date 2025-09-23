@@ -10,7 +10,7 @@ namespace Yandex.SmartCaptcha;
 /// </summary>
 public sealed class SmartCaptchaValidator : ISmartCaptchaValidator, IDisposable
 {
-    private const string ValidationEndpoint = "https://smartcaptcha.yandexcloud.net/validate";
+    private const string ValidationEndpoint = "validate";
 
     private readonly SmartCaptchaSettings _settings;
     private readonly ILogger<SmartCaptchaValidator>? _logger;
@@ -44,6 +44,7 @@ public sealed class SmartCaptchaValidator : ISmartCaptchaValidator, IDisposable
         _logger = logger;
         _httpClient = new HttpClient
         {
+            BaseAddress = new Uri("https://smartcaptcha.yandexcloud.net/"),
             Timeout = TimeSpan.FromSeconds(_settings.TimeoutSeconds),
         };
         _ownsHttpClient = true;
