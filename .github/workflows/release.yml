@@ -93,5 +93,5 @@ jobs:
         run: |
           dotnet nuget push src/Yandex.SmartCaptcha/bin/Release/*.nupkg \
             --api-key ${{ secrets.GITHUB_TOKEN }} \
-            --source https://nuget.pkg.github.com/akrisanov/index.json \
+            --source https://nuget.pkg.github.com/planfact/index.json \
             --skip-duplicate
