@@ -1,0 +1,21 @@
+# Build outputs
+bin/
+obj/
+/artifacts/
+/TestResults/
+/CoverageReport/
+/.idea/
+/.vscode/
+/.ionide/
+/*.user
+*.suo
+*.userprefs
+
+# OS
+.DS_Store
+Thumbs.db
+
+# NuGet
+*.nupkg
+.nuget/
+packages/
