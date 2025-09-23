@@ -187,6 +187,6 @@ builder.Services.AddHttpClient<ISmartCaptchaValidator, SmartCaptchaValidator>()
 Встроенные resilience patterns обеспечивают:
 
 - **Автоматические повторы** при временных сбоях
-- **Circuit breaker** для защиты от каскадных отказов  
+- **Circuit breaker** для защиты от каскадных отказов
 - **Exponential backoff** с jitter для оптимального retry
 - **Timeout policies** на разных уровнях
