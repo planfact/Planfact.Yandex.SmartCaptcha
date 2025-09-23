@@ -64,7 +64,8 @@ public class CaptchaController : Controller
 - 🌐 **IP валидация** для повышения точности
 - ⚙️ **Гибкие настройки**: пропуск IP-адресов, таймауты, отключение валидации
 - 📝 **Интеграция с логированием** Microsoft.Extensions.Logging
-- 🛡️ **Встроенная надежность**: автоматические retry + circuit breaker
+- 🛡️ **Встроенная надежность**: автоматические retry, circuit breaker, и resilience patterns
+- 🚀 **Enterprise-готовность**: основан на Reliable.HttpClient для production-нагрузок
 - 🧪 **Готовность к тестированию** с поддержкой DI
 
 ## Поддержка платформ

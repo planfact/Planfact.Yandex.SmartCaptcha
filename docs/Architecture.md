@@ -112,21 +112,37 @@ Content-Type: application/json
 ### Регистрация сервисов
 
 ```csharp
-// Базовая регистрация
+// Рекомендуемый способ - с resilience patterns
 services.AddSmartCaptcha(configuration);
 
-// С HttpClient (рекомендуется)
+// Альтернативный способ с дополнительными настройками HttpClient
 services.AddSmartCaptchaWithHttpClient(configuration);
 ```
 
-### HttpClient management
+### HttpClient management и Resilience
 
-При использовании `AddSmartCaptchaWithHttpClient`:
+Библиотека использует **Reliable.HttpClient** для enterprise-готовности:
 
-- HttpClient управляется через `IHttpClientFactory`
-- Автоматическое управление соединениями
-- Поддержка retry policies и circuit breakers
-- Лучшая производительность в enterprise сценариях
+- **Автоматические retry**: повторные попытки при временных сбоях
+- **Circuit Breaker**: защита от каскадных отказов
+- **Timeout policies**: настраиваемые таймауты
+- **Exponential backoff**: умная стратегия повторов
+- **HttpClient pooling**: эффективное управление соединениями через `IHttpClientFactory`
+
+#### Конфигурация resilience patterns
+
+```csharp
+// Автоматическая настройка (рекомендуется)
+services.AddSmartCaptcha(configuration); // Использует AddResilience() по умолчанию
+
+// Ручная настройка для специфических требований
+services.AddHttpClient<ISmartCaptchaValidator, SmartCaptchaValidator>(client =>
+{
+    client.BaseAddress = new Uri("https://smartcaptcha.yandexcloud.net/");
+    client.Timeout = TimeSpan.FromSeconds(30);
+})
+.AddResilience(); // Добавляет retry + circuit breaker
+```
 
 ## Обработка ошибок
 
@@ -173,14 +189,37 @@ _logger.LogDebug("Валидация каптчи пропущена для IP {
 _logger.LogError(httpEx, "Ошибка HTTP при валидации каптчи");
 ```
 
-## Производительность
+## Производительность и надежность
 
-### Рекомендации
+### Resilience Patterns
 
-1. **HttpClient pooling**: используйте `AddSmartCaptchaWithHttpClient`
+Библиотека построена на основе **Reliable.HttpClient**, который предоставляет enterprise-уровень надежности:
+
+#### Retry Policy
+
+- **Exponential backoff**: задержки между повторами увеличиваются экспоненциально
+- **Jitter**: случайные отклонения предотвращают thundering herd
+- **Selective retries**: только для retriable ошибок (сетевые, 5xx коды)
+
+#### Circuit Breaker
+
+- **Fail-fast**: быстрое переключение при множественных сбоях
+- **Half-open state**: автоматическое восстановление
+- **Защита downstream**: предотвращение каскадных отказов
+
+#### Timeout Policies
+
+- **Request timeout**: таймаут на уровне запроса
+- **Connection timeout**: таймаут установки соединения
+- **Overall timeout**: общий таймаут операции
+
+### Рекомендации по производительности
+
+1. **HttpClient pooling**: используйте DI registration для автоматического pooling
 2. **Таймауты**: настройте разумные значения (10-30 сек)
 3. **IP caching**: кешируйте результаты для trusted IP
 4. **Graceful degradation**: обрабатывайте недоступность сервиса
+5. **Monitoring**: используйте логирование для мониторинга retry/circuit breaker событий
 
 ### Метрики
 

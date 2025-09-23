@@ -163,7 +163,30 @@ catch (ArgumentException ex)
 ## Лучшие практики
 
 1. **Безопасность**: Никогда не храните ключи в коде - используйте конфигурацию или переменные окружения
-2. **Производительность**: Используйте `AddSmartCaptchaWithHttpClient` для оптимального управления HttpClient
-3. **Мониторинг**: Включите логирование для отслеживания ошибок валидации
+2. **Надежность**: Используйте стандартную регистрацию `AddSmartCaptcha()` для автоматических resilience patterns
+3. **Мониторинг**: Включите логирование для отслеживания ошибок валидации и retry событий
 4. **Тестирование**: Используйте `IsEnabled = false` в тестовой среде
 5. **Развертывание**: Настройте `SkipIpAddresses` для внутренних сервисов
+6. **Production**: Доверьтесь встроенным retry и circuit breaker patterns для высоконагруженных систем
+
+### Resilience Configuration
+
+Библиотека автоматически настраивает resilience patterns через Reliable.HttpClient:
+
+```csharp
+// Автоматическая настройка (рекомендуется)
+builder.Services.AddSmartCaptcha(builder.Configuration);
+// Включает: retry policies, circuit breaker, timeouts
+
+// Кастомная настройка resilience (при необходимости)
+builder.Services.AddHttpClient<ISmartCaptchaValidator, SmartCaptchaValidator>()
+    .ConfigureHttpClient(client => /* настройки */)
+    .AddResilience(); // Добавляет resilience patterns
+```
+
+Встроенные resilience patterns обеспечивают:
+
+- **Автоматические повторы** при временных сбоях
+- **Circuit breaker** для защиты от каскадных отказов  
+- **Exponential backoff** с jitter для оптимального retry
+- **Timeout policies** на разных уровнях
