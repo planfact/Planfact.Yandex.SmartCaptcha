@@ -26,7 +26,7 @@ public static class ServiceCollectionExtensions
             throw new ArgumentException("Имя секции не может быть пустым.", nameof(sectionName));
 
         services.Configure<SmartCaptchaSettings>(configuration.GetSection(sectionName));
-        
+
         // Добавляем HttpClient с resilience patterns для надежности
         services.AddHttpClient<ISmartCaptchaValidator, SmartCaptchaValidator>(client =>
         {
@@ -49,7 +49,7 @@ public static class ServiceCollectionExtensions
         SmartCaptchaSettings settings)
     {
         services.TryAddSingleton(settings);
-        
+
         // Добавляем HttpClient с resilience patterns для надежности
         services.AddHttpClient<ISmartCaptchaValidator, SmartCaptchaValidator>(client =>
         {

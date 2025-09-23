@@ -109,7 +109,20 @@ public abstract class SmartCaptchaTestsBase
             .Setup<Task<HttpResponseMessage>>("SendAsync",
                 ItExpr.IsAny<HttpRequestMessage>(),
                 ItExpr.IsAny<CancellationToken>())
-            .Callback<HttpRequestMessage, CancellationToken>((req, _) => capturedRequests.Add(req))
+            .Callback<HttpRequestMessage, CancellationToken>((req, _) =>
+            {
+                // Создаем копию запроса для захвата, так как оригинал может быть изменен
+                var capturedRequest = new HttpRequestMessage(req.Method, req.RequestUri);
+                foreach (KeyValuePair<string, IEnumerable<string>> header in req.Headers)
+                {
+                    capturedRequest.Headers.TryAddWithoutValidation(header.Key, header.Value);
+                }
+                if (req.Content != null)
+                {
+                    capturedRequest.Content = req.Content;
+                }
+                capturedRequests.Add(capturedRequest);
+            })
             .ReturnsAsync(new HttpResponseMessage
             {
                 StatusCode = HttpStatusCode.OK,
@@ -130,5 +143,28 @@ public abstract class SmartCaptchaTestsBase
         public const string InvalidToken = "invalid_token";
         public const string IamTokenValue = "test_iam_token";
         public const string ApiKeyValue = "test_api_key";
+    }
+
+    /// <summary>
+    /// Создает мок HttpClient с заданным поведением для DI тестов.
+    /// </summary>
+    protected static HttpClient CreateMockHttpClient(Mock<HttpMessageHandler> mockHandler)
+    {
+        var httpClient = new HttpClient(mockHandler.Object)
+        {
+            BaseAddress = new Uri("https://smartcaptcha.yandexcloud.net/"),
+        };
+        return httpClient;
+    }
+
+    /// <summary>
+    /// Создает валидатор через DI с моком HttpClient.
+    /// </summary>
+    protected static SmartCaptchaValidator CreateValidatorWithMockedHttp(
+        Mock<HttpMessageHandler> mockHandler,
+        SmartCaptchaSettings? settings = null)
+    {
+        HttpClient httpClient = CreateMockHttpClient(mockHandler);
+        return new SmartCaptchaValidator(httpClient, Options.Create(settings ?? CreateDefaultSettings()));
     }
 }
