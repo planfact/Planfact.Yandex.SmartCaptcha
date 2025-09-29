@@ -2,7 +2,7 @@ using FluentAssertions;
 using Moq;
 using Xunit;
 
-namespace Yandex.SmartCaptcha.Tests;
+namespace Planfact.Yandex.SmartCaptcha.Tests;
 
 public class SmartCaptchaValidatorHttpTests : SmartCaptchaTestsBase
 {

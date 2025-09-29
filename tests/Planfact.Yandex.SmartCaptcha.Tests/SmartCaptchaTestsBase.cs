@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 using Moq;
 using Moq.Protected;
 
-namespace Yandex.SmartCaptcha.Tests;
+namespace Planfact.Yandex.SmartCaptcha.Tests;
 
 /// <summary>
 /// Базовый класс для тестов с общими вспомогательными методами.

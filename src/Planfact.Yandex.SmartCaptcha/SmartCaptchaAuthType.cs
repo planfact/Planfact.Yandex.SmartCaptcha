@@ -1,4 +1,4 @@
-namespace Yandex.SmartCaptcha;
+namespace Planfact.Yandex.SmartCaptcha;
 
 /// <summary>
 /// Типы аутентификации для Yandex SmartCaptcha API.

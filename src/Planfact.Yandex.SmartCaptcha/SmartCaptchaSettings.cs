@@ -1,4 +1,4 @@
-namespace Yandex.SmartCaptcha;
+namespace Planfact.Yandex.SmartCaptcha;
 
 /// <summary>
 /// Настройки для Yandex SmartCaptcha.

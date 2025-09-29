@@ -1,25 +1,25 @@
-# Yandex.SmartCaptcha
+# Planfact.Yandex.SmartCaptcha
 
-[![NuGet Version](https://img.shields.io/nuget/v/Yandex.SmartCaptcha?style=flat-square&logo=nuget)](https://www.nuget.org/packages/Yandex.SmartCaptcha/)
-[![NuGet Downloads](https://img.shields.io/nuget/dt/Yandex.SmartCaptcha?style=flat-square&logo=nuget)](https://www.nuget.org/packages/Yandex.SmartCaptcha/)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/planfact/Yandex.SmartCaptcha/ci.yml?branch=main&style=flat-square&logo=github)](https://github.com/planfact/Yandex.SmartCaptcha/actions)
-[![codecov](https://img.shields.io/codecov/c/github/planfact/Yandex.SmartCaptcha?style=flat-square&logo=codecov)](https://codecov.io/gh/planfact/Yandex.SmartCaptcha)
+[![NuGet Version](https://img.shields.io/nuget/v/Planfact.Yandex.SmartCaptcha?style=flat-square&logo=nuget)](https://www.nuget.org/packages/Planfact.Yandex.SmartCaptcha/)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/Planfact.Yandex.SmartCaptcha?style=flat-square&logo=nuget)](https://www.nuget.org/packages/Planfact.Yandex.SmartCaptcha/)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/planfact/Planfact.Yandex.SmartCaptcha/ci.yml?branch=main&style=flat-square&logo=github)](https://github.com/planfact/Planfact.Yandex.SmartCaptcha/actions)
+[![codecov](https://img.shields.io/codecov/c/github/planfact/Planfact.Yandex.SmartCaptcha?style=flat-square&logo=codecov)](https://codecov.io/gh/planfact/Planfact.Yandex.SmartCaptcha)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![.NET](https://img.shields.io/badge/.NET-6.0%7C8.0%7C9.0-512BD4?style=flat-square&logo=dotnet)](https://dotnet.microsoft.com/)
-[![GitHub release](https://img.shields.io/github/v/release/planfact/Yandex.SmartCaptcha?style=flat-square&logo=github)](https://github.com/planfact/Yandex.SmartCaptcha/releases)
+[![GitHub release](https://img.shields.io/github/v/release/planfact/Planfact.Yandex.SmartCaptcha?style=flat-square&logo=github)](https://github.com/planfact/Planfact.Yandex.SmartCaptcha/releases)
 
 Идиоматичный и типобезопасный .NET клиент для сервиса [Yandex SmartCaptcha](https://yandex.cloud/ru/docs/smartcaptcha).
 
 ## Установка
 
 ```bash
-dotnet add package Yandex.SmartCaptcha
+dotnet add package Planfact.Yandex.SmartCaptcha
 ```
 
 ## Быстрый старт
 
 ```csharp
-using Yandex.SmartCaptcha;
+using Planfact.Yandex.SmartCaptcha;
 
 var settings = new SmartCaptchaSettings { SecretKey = "YOUR_SECRET_KEY" };
 var validator = new SmartCaptchaValidator(settings);

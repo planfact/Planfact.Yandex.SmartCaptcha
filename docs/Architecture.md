@@ -1,6 +1,6 @@
 # Архитектура
 
-Описание архитектуры и дизайна библиотеки Yandex.SmartCaptcha.
+Описание архитектуры и дизайна библиотеки Planfact.Yandex.SmartCaptcha.
 
 ## Обзор
 
@@ -15,7 +15,7 @@
 ## Структура проекта
 
 ```shell
-src/Yandex.SmartCaptcha/
+src/Planfact.Yandex.SmartCaptcha/
 ├── ISmartCaptchaValidator.cs        # Основной интерфейс
 ├── SmartCaptchaValidator.cs         # Реализация валидатора
 ├── SmartCaptchaValidationResult.cs  # Результат валидации

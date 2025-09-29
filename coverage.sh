@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# Script for local code coverage report generation for Yandex.SmartCaptcha
+# Script for local code coverage report generation for Planfact.Yandex.SmartCaptcha
 
 set -e  # Stop execution on error
 
-echo "🧪 Running Yandex.SmartCaptcha tests with coverage generation..."
+echo "🧪 Running Planfact.Yandex.SmartCaptcha tests with coverage generation..."
 
 # Clean previous results
 rm -rf ./TestResults ./CoverageReport
 
 # Run tests for the entire solution with coverage
-dotnet test Yandex.SmartCaptcha.sln \
+dotnet test Planfact.Yandex.SmartCaptcha.sln \
     --configuration Release \
     --collect:"XPlat Code Coverage" \
     --results-directory ./TestResults \
@@ -45,7 +45,7 @@ reportgenerator \
     -reports:"$COVERAGE_REPORTS" \
     -targetdir:"./CoverageReport" \
     -reporttypes:"Html;TextSummary" \
-    -assemblyfilters:"+Yandex.SmartCaptcha*;-*.Tests*" \
+    -assemblyfilters:"+Planfact.Yandex.SmartCaptcha*;-*.Tests*" \
     -classfilters:"-*.Tests*"
 
 echo ""

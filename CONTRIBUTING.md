@@ -1,6 +1,6 @@
-# Внесение вклада в Yandex.SmartCaptcha
+# Внесение вклада в Planfact.Yandex.SmartCaptcha
 
-Спасибо за интерес к участию в развитии Yandex.SmartCaptcha! Это руководство поможет вам начать.
+Спасибо за интерес к участию в развитии Planfact.Yandex.SmartCaptcha! Это руководство поможет вам начать.
 
 ## Начало работы
 
@@ -16,8 +16,8 @@
 2. Клонируйте ваш fork локально:
 
    ```bash
-   git clone https://github.com/YOUR_USERNAME/Yandex.SmartCaptcha.git
-   cd Yandex.SmartCaptcha
+   git clone https://github.com/YOUR_USERNAME/Planfact.Yandex.SmartCaptcha.git
+   cd Planfact.Yandex.SmartCaptcha
    ```
 
 3. Восстановите зависимости и соберите проект:
@@ -233,8 +233,8 @@ public void ValidateAsync_WithEmptyToken_ShouldReturnFailure()
 
 ## Правовые вопросы
 
-Внося вклад в Yandex.SmartCaptcha, вы соглашаетесь, что ваш вклад будет лицензирован под лицензией MIT.
+Внося вклад в Planfact.Yandex.SmartCaptcha, вы соглашаетесь, что ваш вклад будет лицензирован под лицензией MIT.
 
 ---
 
-Спасибо за помощь в развитии Yandex.SmartCaptcha!
+Спасибо за помощь в развитии Planfact.Yandex.SmartCaptcha!

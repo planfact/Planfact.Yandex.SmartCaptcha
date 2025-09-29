@@ -3,7 +3,7 @@ using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Yandex.SmartCaptcha;
+namespace Planfact.Yandex.SmartCaptcha;
 
 /// <summary>
 /// Валидатор SmartCaptcha с поддержкой различных типов аутентификации.

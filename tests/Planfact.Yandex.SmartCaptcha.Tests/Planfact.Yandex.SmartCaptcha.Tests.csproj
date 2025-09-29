@@ -4,6 +4,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="../../src/Yandex.SmartCaptcha/Yandex.SmartCaptcha.csproj" />
+    <ProjectReference
+      Include="../../src/Planfact.Yandex.SmartCaptcha/Planfact.Yandex.SmartCaptcha.csproj" />
   </ItemGroup>
 </Project>

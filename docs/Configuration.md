@@ -2,7 +2,7 @@
 
 ## Типы аутентификации
 
-Yandex.SmartCaptcha поддерживает три типа аутентификации:
+Planfact.Yandex.SmartCaptcha поддерживает три типа аутентификации:
 
 ### 1. Secret Key (рекомендуется)
 
@@ -53,7 +53,7 @@ var settings = new SmartCaptchaSettings
 - **SkipIpAddresses** - список IP-адресов, для которых валидация пропускается
 - **TimeoutSeconds** - таймаут HTTP-запроса в секундах (по умолчанию: 30)
 
-> 📖 Полное описание класса см. в исходном коде: `src/Yandex.SmartCaptcha/SmartCaptchaSettings.cs`
+> 📖 Полное описание класса см. в исходном коде: `src/Planfact.Yandex.SmartCaptcha/SmartCaptchaSettings.cs`
 
 ## Интеграция с ASP.NET Core
 

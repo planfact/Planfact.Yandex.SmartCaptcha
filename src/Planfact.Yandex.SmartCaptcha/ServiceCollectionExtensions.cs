@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Reliable.HttpClient;
 
-namespace Yandex.SmartCaptcha;
+namespace Planfact.Yandex.SmartCaptcha;
 
 /// <summary>
 /// Методы расширения для регистрации SmartCaptcha в DI контейнере.
