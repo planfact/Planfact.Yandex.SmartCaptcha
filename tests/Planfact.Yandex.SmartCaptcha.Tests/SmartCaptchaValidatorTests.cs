@@ -17,14 +17,17 @@ public class SmartCaptchaValidatorTests : SmartCaptchaTestsBase
             .WithParameterName("token");
     }
 
-    [Fact]
-    public async Task ValidateAsync_WithDisabledValidation_ReturnsSuccess()
+    [Theory]
+    [InlineData(TestConstants.DefaultToken)]
+    [InlineData("")]
+    [InlineData("  ")]
+    public async Task ValidateAsync_WithDisabledValidation_ReturnsSuccess(string token)
     {
         // Arrange
         SmartCaptchaValidator validator = CreateValidator(CreateDisabledSettings());
 
         // Act
-        SmartCaptchaValidationResult result = await validator.ValidateAsync(TestConstants.DefaultToken);
+        SmartCaptchaValidationResult result = await validator.ValidateAsync(token);
 
         // Assert
         result.IsValid.Should().BeTrue();

@@ -10,6 +10,7 @@ obj/
 /*.user
 *.suo
 *.userprefs
+/.vs/
 
 # OS
 .DS_Store

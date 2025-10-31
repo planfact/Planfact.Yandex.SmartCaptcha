@@ -2,8 +2,6 @@
   <PropertyGroup>
     <WarningsNotAsErrors>NU1903</WarningsNotAsErrors>
     <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
     <Description>Идиоматичный и типобезопасный .NET-клиент для Yandex SmartCaptcha с поддержкой
       различных типов аутентификации и встроенными resilience patterns.</Description>
     <PackageId>Planfact.Yandex.SmartCaptcha</PackageId>
@@ -12,7 +10,15 @@
     <PackageProjectUrl>https://github.com/planfact/Planfact.Yandex.SmartCaptcha</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>v1.0.1:  Исправлен баг с проеркой наличия токена до проверки включения самой капчи.</PackageReleaseNotes>
+    <PackageReleaseNotes>Релиз v1.0.1: Исправление ошибок
+
+Что нового:
+
+Валидация токена на пустоту перед отправкой в Yandex SmartCaptcha производится после проверки включения капчи.
+
+Для чего это нужно:
+
+При отключенной капче не должно пробрасываться исключения в случае передачи пустого токена.</PackageReleaseNotes>
     <PackageTags>
       yandex;smartcaptcha;captcha;validation;security;dotnet;aspnetcore;resilience;httpclient;enterprise</PackageTags>
     <IncludeSymbols>true</IncludeSymbols>
