@@ -12,10 +12,7 @@
     <PackageProjectUrl>https://github.com/planfact/Planfact.Yandex.SmartCaptcha</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>v1.0.0: Первый стабильный релиз! Полнофункциональная библиотека для Yandex
-      SmartCaptcha с поддержкой трех типов аутентификации, встроенными resilience patterns
-      (Reliable.HttpClient), и enterprise-готовностью. Поддержка .NET 6/8/9, полная документация и
-      тесты.</PackageReleaseNotes>
+    <PackageReleaseNotes>v1.0.1:  Исправлен баг с проеркой наличия токена до проверки включения самой капчи.</PackageReleaseNotes>
     <PackageTags>
       yandex;smartcaptcha;captcha;validation;security;dotnet;aspnetcore;resilience;httpclient;enterprise</PackageTags>
     <IncludeSymbols>true</IncludeSymbols>
