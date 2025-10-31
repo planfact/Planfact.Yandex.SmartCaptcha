@@ -1,9 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <WarningsNotAsErrors>NU1903</WarningsNotAsErrors>
-    <Version>1.0.0</Version>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <Version>1.0.1</Version>
     <Description>Идиоматичный и типобезопасный .NET-клиент для Yandex SmartCaptcha с поддержкой
       различных типов аутентификации и встроенными resilience patterns.</Description>
     <PackageId>Planfact.Yandex.SmartCaptcha</PackageId>
@@ -12,10 +10,15 @@
     <PackageProjectUrl>https://github.com/planfact/Planfact.Yandex.SmartCaptcha</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>v1.0.0: Первый стабильный релиз! Полнофункциональная библиотека для Yandex
-      SmartCaptcha с поддержкой трех типов аутентификации, встроенными resilience patterns
-      (Reliable.HttpClient), и enterprise-готовностью. Поддержка .NET 6/8/9, полная документация и
-      тесты.</PackageReleaseNotes>
+    <PackageReleaseNotes>Релиз v1.0.1: Исправление ошибок
+
+Что нового:
+
+Валидация токена на пустоту перед отправкой в Yandex SmartCaptcha производится после проверки включения капчи.
+
+Для чего это нужно:
+
+При отключенной капче не должно пробрасываться исключения в случае передачи пустого токена.</PackageReleaseNotes>
     <PackageTags>
       yandex;smartcaptcha;captcha;validation;security;dotnet;aspnetcore;resilience;httpclient;enterprise</PackageTags>
     <IncludeSymbols>true</IncludeSymbols>
@@ -28,10 +31,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.8" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.8" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions"
-      Version="9.0.8" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions"
-      Version="9.0.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.8" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.8" />
     <PackageReference Include="Reliable.HttpClient" Version="1.3.0" />
   </ItemGroup>
