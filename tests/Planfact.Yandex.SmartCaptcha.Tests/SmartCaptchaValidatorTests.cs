@@ -33,14 +33,17 @@ public class SmartCaptchaValidatorTests : SmartCaptchaTestsBase
         result.IsValid.Should().BeTrue();
     }
 
-    [Fact]
-    public async Task ValidateAsync_WithSkippedIp_ReturnsSuccess()
+    [Theory]
+    [InlineData(TestConstants.DefaultToken)]
+    [InlineData("")]
+    [InlineData("  ")]
+    public async Task ValidateAsync_WithSkippedIp_ReturnsSuccess(string token)
     {
         // Arrange
         SmartCaptchaValidator validator = CreateValidator(CreateSettingsWithSkipIps(TestConstants.DefaultIp));
 
         // Act
-        SmartCaptchaValidationResult result = await validator.ValidateAsync(TestConstants.DefaultToken, TestConstants.DefaultIp);
+        SmartCaptchaValidationResult result = await validator.ValidateAsync(token, TestConstants.DefaultIp);
 
         // Assert
         result.IsValid.Should().BeTrue();
