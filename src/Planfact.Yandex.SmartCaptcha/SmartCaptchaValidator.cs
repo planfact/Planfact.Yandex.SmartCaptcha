@@ -82,9 +82,6 @@ public sealed class SmartCaptchaValidator : ISmartCaptchaValidator, IDisposable
         string? clientIp = null,
         CancellationToken cancellationToken = default)
     {
-        if (string.IsNullOrWhiteSpace(token))
-            throw new ArgumentException("Токен не может быть пустым.", nameof(token));
-
         return ValidateAsyncCore(token, clientIp, cancellationToken);
     }
 
@@ -106,6 +103,11 @@ public sealed class SmartCaptchaValidator : ISmartCaptchaValidator, IDisposable
         {
             _logger?.LogDebug("Валидация каптчи пропущена для IP {ClientIp}", clientIp);
             return SmartCaptchaValidationResult.Success();
+        }
+
+        if (string.IsNullOrWhiteSpace(token))
+        {
+            throw new ArgumentException("Токен не может быть пустым.", nameof(token));
         }
 
         try
